@@ -1,0 +1,1539 @@
+{
+  "/v1/cryptocurrency/airdrop": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "Airdrop Unique ID. This can be found using the Airdrops API."
+    }
+  ],
+  "/v1/cryptocurrency/airdrops": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "desc": "What status of airdrops.",
+      "defa": "\"ONGOING\""
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "Filtered airdrops by one cryptocurrency CoinMarketCap IDs. Example: 1"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively filter airdrops by a cryptocurrency slug. Example: \"bitcoin\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively filter airdrops one cryptocurrency symbol. Example: \"BTC\"."
+    }
+  ],
+  "/v1/cryptocurrency/categories": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "Filtered categories by one or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively filter categories by a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively filter categories one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\"."
+    }
+  ],
+  "/v1/cryptocurrency/category": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "The Category ID. This can be found using the Categories API."
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of coins to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of coins to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/cryptocurrency/map": [
+    {
+      "name": "listing_status",
+      "type": "string",
+      "desc": "Only active cryptocurrencies are returned by default. Passinactiveto get a list of cryptocurrencies that are no longer active. Passuntrackedto get a list of cryptocurrencies that are listed but do not yet meet methodology requirements to have tracked markets available. You may pass one or more comma-separated values.",
+      "defa": "\"active\""
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size."
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list of cryptocurrencies by.",
+      "defa": "\"id\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Optionally pass a comma-separated list of cryptocurrency symbols to return CoinMarketCap IDs for. If this option is passed, other options will be ignored."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passplatform,first_historical_data,last_historical_data,is_active,statusto include all auxiliary fields.",
+      "defa": "\"platform,first_historical_data,last_historical_data,is_active\""
+    }
+  ],
+  "/v2/cryptocurrency/info": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency IDs. Example: \"1,2\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request. Please note that starting in the v2 endpoint, due to the fact that a symbol is not unique, if you request by symbol each data response will contain an array of objects containing all of the coins that use each requested symbol. The v1 endpoint will still return a single object, the highest ranked coin using that symbol."
+    },
+    {
+      "name": "address",
+      "type": "string",
+      "desc": "Alternatively pass in a contract address. Example: \"0xc40af1e4fecfa05ce6bab79dcd8b373d2e436c4e\""
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if any invalid cryptocurrencies are requested or a cryptocurrency does not have matching records in the requested timeframe. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "false"
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passurls,logo,description,tags,platform,date_added,notice,statusto include all auxiliary fields.",
+      "defa": "\"urls,logo,description,tags,platform,date_added,notice\""
+    }
+  ],
+  "/v1/cryptocurrency/listings/historical": [
+    {
+      "name": "date",
+      "type": "string",
+      "desc": "date (Unix or ISO 8601) to reference day of snapshot."
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list of cryptocurrencies by.",
+      "defa": "\"cmc_rank\""
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "The direction in which to order cryptocurrencies against the specified sort."
+    },
+    {
+      "name": "cryptocurrency_type",
+      "type": "string",
+      "desc": "The type of cryptocurrency to include.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passplatform,tags,date_added,circulating_supply,total_supply,max_supply,cmc_rank,num_market_pairsto include all auxiliary fields.",
+      "defa": "\"platform,tags,date_added,circulating_supply,total_supply,max_supply,cmc_rank,num_market_pairs\""
+    }
+  ],
+  "/v1/cryptocurrency/listings/latest": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "price_min",
+      "type": "number",
+      "desc": "Optionally specify a threshold of minimum USD price to filter results by."
+    },
+    {
+      "name": "price_max",
+      "type": "number",
+      "desc": "Optionally specify a threshold of maximum USD price to filter results by."
+    },
+    {
+      "name": "market_cap_min",
+      "type": "number",
+      "desc": "Optionally specify a threshold of minimum market cap to filter results by."
+    },
+    {
+      "name": "market_cap_max",
+      "type": "number",
+      "desc": "Optionally specify a threshold of maximum market cap to filter results by."
+    },
+    {
+      "name": "volume_24h_min",
+      "type": "number",
+      "desc": "Optionally specify a threshold of minimum 24 hour USD volume to filter results by."
+    },
+    {
+      "name": "volume_24h_max",
+      "type": "number",
+      "desc": "Optionally specify a threshold of maximum 24 hour USD volume to filter results by."
+    },
+    {
+      "name": "circulating_supply_min",
+      "type": "number",
+      "desc": "Optionally specify a threshold of minimum circulating supply to filter results by."
+    },
+    {
+      "name": "circulating_supply_max",
+      "type": "number",
+      "desc": "Optionally specify a threshold of maximum circulating supply to filter results by."
+    },
+    {
+      "name": "percent_change_24h_min",
+      "type": "number",
+      "desc": "Optionally specify a threshold of minimum 24 hour percent change to filter results by."
+    },
+    {
+      "name": "percent_change_24h_max",
+      "type": "number",
+      "desc": "Optionally specify a threshold of maximum 24 hour percent change to filter results by."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list of cryptocurrencies by.",
+      "defa": "\"market_cap\""
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "The direction in which to order cryptocurrencies against the specified sort."
+    },
+    {
+      "name": "cryptocurrency_type",
+      "type": "string",
+      "desc": "The type of cryptocurrency to include.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "tag",
+      "type": "string",
+      "desc": "The tag of cryptocurrency to include.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,total_supply,market_cap_by_total_supply,volume_24h_reported,volume_7d,volume_7d_reported,volume_30d,volume_30d_reported,is_market_cap_included_in_calcto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,total_supply\""
+    }
+  ],
+  "/v1/cryptocurrency/listings/new": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "The direction in which to order cryptocurrencies against the specified sort."
+    }
+  ],
+  "/v1/cryptocurrency/trending/gainers-losers": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Adjusts the overall window of time for the biggest gainers and losers.",
+      "defa": "\"24h\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list of cryptocurrencies by.",
+      "defa": "\"percent_change_24h\""
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "The direction in which to order cryptocurrencies against the specified sort."
+    }
+  ],
+  "/v1/cryptocurrency/trending/latest": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Adjusts the overall window of time for the latest trending coins.",
+      "defa": "\"24h\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/cryptocurrency/trending/most-visited": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Adjusts the overall window of time for most visited currencies.",
+      "defa": "\"24h\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v2/cryptocurrency/market-pairs/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "A cryptocurrency or fiat currency by CoinMarketCap ID to list market pairs for. Example: \"1\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a cryptocurrency by slug. Example: \"bitcoin\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass a cryptocurrency by symbol. Fiat currencies are not supported by this field. Example: \"BTC\". A single cryptocurrency \"id\", \"slug\",or\"symbol\" is required."
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "Optionally specify the sort direction of markets returned.",
+      "defa": "\"desc\""
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "Optionally specify the sort order of markets returned. By default we return a strict sort on 24 hour reported volume. Passcmc_rankto return a CMC methodology based sort where markets with excluded volumes are returned last.",
+      "defa": "\"volume_24h_strict\""
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,category,fee_type,market_url,currency_name,currency_slug,price_quote,notice,cmc_rank,effective_liquidity,market_score,market_reputationto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,category,fee_type\""
+    },
+    {
+      "name": "matched_id",
+      "type": "string",
+      "desc": "Optionally include one or more fiat or cryptocurrency IDs to filter market pairs by. For example?id=1&matched_id=2781would only return BTC markets that matched: \"BTC/USD\" or \"USD/BTC\". This parameter cannot be used whenmatched_symbolis used."
+    },
+    {
+      "name": "matched_symbol",
+      "type": "string",
+      "desc": "Optionally include one or more fiat or cryptocurrency symbols to filter market pairs by. For example?symbol=BTC&matched_symbol=USDwould only return BTC markets that matched: \"BTC/USD\" or \"USD/BTC\". This parameter cannot be used whenmatched_idis used."
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "desc": "The category of trading this market falls under. Spot markets are the most common but options include derivatives and OTC.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "fee_type",
+      "type": "string",
+      "desc": "The fee type the exchange enforces for this market.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v2/cryptocurrency/ohlcv/historical": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency IDs. Example: \"1,1027\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Time period to return OHLCV data for. The default is \"daily\". If hourly, the open will be 01:00 and the close will be 01:59. If daily, the open will be 00:00:00 for the day and close will be 23:59:99 for the same day. See the main endpoint description for details.",
+      "defa": "\"daily\""
+    },
+    {
+      "name": "time_start",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to start returning OHLCV time periods for. Only the date portion of the timestamp is used for daily OHLCV so it's recommended to send an ISO date format like \"2018-09-19\" without time."
+    },
+    {
+      "name": "time_end",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to stop returning OHLCV time periods for (inclusive). Optional, if not passed we'll default to the current time. Only the date portion of the timestamp is used for daily OHLCV so it's recommended to send an ISO date format like \"2018-09-19\" without time."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "desc": "Optionally limit the number of time periods to return results for. The default is 10 items. The current query limit is 10000 items.",
+      "defa": "10"
+    },
+    {
+      "name": "interval",
+      "type": "string",
+      "desc": "Optionally adjust the interval that \"time_period\" is sampled. For example with interval=monthly&time_period=daily you will see a daily OHLCV record for January, February, March and so on. See main endpoint description for available options.",
+      "defa": "\"daily\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 fiat currencies or cryptocurrencies."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if any invalid cryptocurrencies are requested or a cryptocurrency does not have matching records in the requested timeframe. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v2/cryptocurrency/ohlcv/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"symbol\" is required."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if any invalid cryptocurrencies are requested or a cryptocurrency does not have matching records in the requested timeframe. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v2/cryptocurrency/price-performance-stats/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Specify one or more comma-delimited time periods to return stats for.all_timeis the default. Passall_time,yesterday,24h,7d,30d,90d,365dto return all supported time periods. All rolling periods have a rolling close time of the current request time. For example24hwould have a close time of now and an open time of 24 hours before now.Please note:yesterdayis a UTC period and currently does not currently supporthighandlowtimestamps.",
+      "defa": "\"all_time\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if no match is found for 1 or more requested cryptocurrencies. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v2/cryptocurrency/quotes/historical": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency IDs. Example: \"1,2\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "time_start",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to start returning quotes for. Optional, if not passed, we'll return quotes calculated in reverse from \"time_end\"."
+    },
+    {
+      "name": "time_end",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to stop returning quotes for (inclusive). Optional, if not passed, we'll default to the current time. If no \"time_start\" is passed, we return quotes in reverse order starting from this time."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "desc": "The number of interval periods to return results for. Optional, required if both \"time_start\" and \"time_end\" aren't supplied. The default is 10 items. The current query limit is 10000.",
+      "defa": "10"
+    },
+    {
+      "name": "interval",
+      "type": "string",
+      "desc": "Interval of time to return data points for. See details in endpoint description.",
+      "defa": "\"5m\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 other fiat currencies or cryptocurrencies."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passprice,volume,market_cap,circulating_supply,total_supply,quote_timestamp,is_active,is_fiat,search_intervalto include all auxiliary fields.",
+      "defa": "\"price,volume,market_cap,circulating_supply,total_supply,quote_timestamp,is_active,is_fiat\""
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if no match is found for 1 or more requested cryptocurrencies. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v2/cryptocurrency/quotes/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,total_supply,market_cap_by_total_supply,volume_24h_reported,volume_7d,volume_7d_reported,volume_30d,volume_30d_reported,is_active,is_fiatto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,total_supply,is_active,is_fiat\""
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if no match is found for 1 or more requested cryptocurrencies. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v3/cryptocurrency/quotes/historical": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency IDs. Example: \"1,2\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "time_start",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to start returning quotes for. Optional, if not passed, we'll return quotes calculated in reverse from \"time_end\"."
+    },
+    {
+      "name": "time_end",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to stop returning quotes for (inclusive). Optional, if not passed, we'll default to the current time. If no \"time_start\" is passed, we return quotes in reverse order starting from this time."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "desc": "The number of interval periods to return results for. Optional, required if both \"time_start\" and \"time_end\" aren't supplied. The default is 10 items. The current query limit is 10000.",
+      "defa": "10"
+    },
+    {
+      "name": "interval",
+      "type": "string",
+      "desc": "Interval of time to return data points for. See details in endpoint description.",
+      "defa": "\"5m\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 other fiat currencies or cryptocurrencies."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passprice,volume,market_cap,circulating_supply,total_supply,quote_timestamp,is_active,is_fiat,search_intervalto include all auxiliary fields.",
+      "defa": "\"price,volume,market_cap,circulating_supply,total_supply,quote_timestamp,is_active,is_fiat\""
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if no match is found for 1 or more requested cryptocurrencies. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v1/fiat/map": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size."
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list by.",
+      "defa": "\"id\""
+    },
+    {
+      "name": "include_metals",
+      "type": "boolean",
+      "desc": "Passtrueto include precious metals.",
+      "defa": "false"
+    }
+  ],
+  "/v1/exchange/assets": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "A CoinMarketCap exchange ID. Example: 270"
+    }
+  ],
+  "/v1/exchange/info": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency exchange ids. Example: \"1,2\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively, one or more comma-separated exchange names in URL friendly shorthand \"slug\" format (all lowercase, spaces replaced with hyphens). Example: \"binance,gdax\". At least one \"id\"or\"slug\" is required."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passurls,logo,description,date_launched,notice,statusto include all auxiliary fields.",
+      "defa": "\"urls,logo,description,date_launched,notice\""
+    }
+  ],
+  "/v1/exchange/map": [
+    {
+      "name": "listing_status",
+      "type": "string",
+      "desc": "Only active exchanges are returned by default. Passinactiveto get a list of exchanges that are no longer active. Passuntrackedto get a list of exchanges that are registered but do not currently meet methodology requirements to have active markets tracked. You may pass one or more comma-separated values.",
+      "defa": "\"active\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Optionally pass a comma-separated list of exchange slugs (lowercase URL friendly shorthand name with spaces replaced with dashes) to return CoinMarketCap IDs for. If this option is passed, other options will be ignored."
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size."
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list of exchanges by.",
+      "defa": "\"id\""
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passfirst_historical_data,last_historical_data,is_active,statusto include all auxiliary fields.",
+      "defa": "\"first_historical_data,last_historical_data,is_active\""
+    },
+    {
+      "name": "crypto_id",
+      "type": "string",
+      "desc": "Optionally include one fiat or cryptocurrency IDs to filter market pairs by. For example?crypto_id=1would only return exchanges that have BTC."
+    }
+  ],
+  "/v1/exchange/listings/latest": [
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "What field to sort the list of exchanges by.",
+      "defa": "\"volume_24h\""
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "The direction in which to order exchanges against the specified sort."
+    },
+    {
+      "name": "market_type",
+      "type": "string",
+      "desc": "The type of exchange markets to include in rankings. This field is deprecated. Please use \"all\" for accurate sorting.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "desc": "The category for this exchange.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,traffic_score,rank,exchange_score,effective_liquidity_24h,date_launched,fiatsto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,traffic_score,rank,exchange_score,effective_liquidity_24h\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/exchange/market-pairs/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "A CoinMarketCap exchange ID. Example: \"1\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass an exchange \"slug\" (URL friendly all lowercase shorthand version of name with spaces replaced with hyphens). Example: \"binance\". One \"id\"or\"slug\" is required."
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,category,fee_type,market_url,currency_name,currency_slug,price_quote,effective_liquidity,market_score,market_reputationto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,category,fee_type\""
+    },
+    {
+      "name": "matched_id",
+      "type": "string",
+      "desc": "Optionally include one or more comma-delimited fiat or cryptocurrency IDs to filter market pairs by. For example?matched_id=2781would only return BTC markets that matched: \"BTC/USD\" or \"USD/BTC\" for the requested exchange. This parameter cannot be used whenmatched_symbolis used."
+    },
+    {
+      "name": "matched_symbol",
+      "type": "string",
+      "desc": "Optionally include one or more comma-delimited fiat or cryptocurrency symbols to filter market pairs by. For example?matched_symbol=USDwould only return BTC markets that matched: \"BTC/USD\" or \"USD/BTC\" for the requested exchange. This parameter cannot be used whenmatched_idis used."
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "desc": "The category of trading this market falls under. Spot markets are the most common but options include derivatives and OTC.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "fee_type",
+      "type": "string",
+      "desc": "The fee type the exchange enforces for this market.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/exchange/quotes/historical": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated exchange CoinMarketCap ids. Example: \"24,270\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively, one or more comma-separated exchange names in URL friendly shorthand \"slug\" format (all lowercase, spaces replaced with hyphens). Example: \"binance,kraken\". At least one \"id\"or\"slug\" is required."
+    },
+    {
+      "name": "time_start",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to start returning quotes for. Optional, if not passed, we'll return quotes calculated in reverse from \"time_end\"."
+    },
+    {
+      "name": "time_end",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to stop returning quotes for (inclusive). Optional, if not passed, we'll default to the current time. If no \"time_start\" is passed, we return quotes in reverse order starting from this time."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "desc": "The number of interval periods to return results for. Optional, required if both \"time_start\" and \"time_end\" aren't supplied. The default is 10 items. The current query limit is 10000.",
+      "defa": "10"
+    },
+    {
+      "name": "interval",
+      "type": "string",
+      "desc": "Interval of time to return data points for. See details in endpoint description.",
+      "defa": "\"5m\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 other fiat currencies or cryptocurrencies."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/exchange/quotes/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap exchange IDs. Example: \"1,2\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively, pass a comma-separated list of exchange \"slugs\" (URL friendly all lowercase shorthand version of name with spaces replaced with hyphens). Example: \"binance,gdax\". At least one \"id\"or\"slug\" is required."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,traffic_score,rank,exchange_score,liquidity_score,effective_liquidity_24hto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,traffic_score,rank,exchange_score,liquidity_score,effective_liquidity_24h\""
+    }
+  ],
+  "/v1/global-metrics/quotes/historical": [
+    {
+      "name": "time_start",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to start returning quotes for. Optional, if not passed, we'll return quotes calculated in reverse from \"time_end\"."
+    },
+    {
+      "name": "time_end",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to stop returning quotes for (inclusive). Optional, if not passed, we'll default to the current time. If no \"time_start\" is passed, we return quotes in reverse order starting from this time."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "desc": "The number of interval periods to return results for. Optional, required if both \"time_start\" and \"time_end\" aren't supplied. The default is 10 items. The current query limit is 10000.",
+      "defa": "10"
+    },
+    {
+      "name": "interval",
+      "type": "string",
+      "desc": "Interval of time to return data points for. See details in endpoint description.",
+      "defa": "\"1d\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 other fiat currencies or cryptocurrencies."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passbtc_dominance,eth_dominance,active_cryptocurrencies,active_exchanges,active_market_pairs,total_volume_24h,total_volume_24h_reported,altcoin_market_cap,altcoin_volume_24h,altcoin_volume_24h_reported,search_intervalto include all auxiliary fields.",
+      "defa": "\"btc_dominance,eth_dominance,active_cryptocurrencies,active_exchanges,active_market_pairs,total_volume_24h,total_volume_24h_reported,altcoin_market_cap,altcoin_volume_24h,altcoin_volume_24h_reported\""
+    }
+  ],
+  "/v1/global-metrics/quotes/latest": [
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/tools/postman": [],
+  "/v2/tools/price-conversion": [
+    {
+      "name": "amount",
+      "type": "number",
+      "desc": "An amount of currency to convert. Example: 10.43"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "The CoinMarketCap currency ID of the base cryptocurrency or fiat to convert from. Example: \"1\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively the currency symbol of the base cryptocurrency or fiat to convert from. Example: \"BTC\". One \"id\"or\"symbol\" is required. Please note that starting in the v2 endpoint, due to the fact that a symbol is not unique, if you request by symbol each quote response will contain an array of objects containing all of the coins that use each requested symbol. The v1 endpoint will still return a single object, the highest ranked coin using that symbol."
+    },
+    {
+      "name": "time",
+      "type": "string",
+      "desc": "Optional timestamp (Unix or ISO 8601) to reference historical pricing during conversion. If not passed, the current time will be used. If passed, we'll reference the closest historic values available for this conversion."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Pass up to 120 comma-separated fiat or cryptocurrency symbols to convert the source amount to."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/blockchain/statistics/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs to return blockchain data for. Pass1,2,1027to request all currently supported blockchains."
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. PassBTC,LTC,ETHto request all currently supported blockchains."
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Passbitcoin,litecoin,ethereumto request all currently supported blockchains."
+    }
+  ],
+  "/v1/key/info": [],
+  "/v1/cryptocurrency/info": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency IDs. Example: \"1,2\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request. Please note that starting in the v2 endpoint, due to the fact that a symbol is not unique, if you request by symbol each data response will contain an array of objects containing all of the coins that use each requested symbol. The v1 endpoint will still return a single object, the highest ranked coin using that symbol."
+    },
+    {
+      "name": "address",
+      "type": "string",
+      "desc": "Alternatively pass in a contract address. Example: \"0xc40af1e4fecfa05ce6bab79dcd8b373d2e436c4e\""
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if any invalid cryptocurrencies are requested or a cryptocurrency does not have matching records in the requested timeframe. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "false"
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passurls,logo,description,tags,platform,date_added,notice,statusto include all auxiliary fields.",
+      "defa": "\"urls,logo,description,tags,platform,date_added,notice\""
+    }
+  ],
+  "/v1/tools/price-conversion": [
+    {
+      "name": "amount",
+      "type": "number",
+      "desc": "An amount of currency to convert. Example: 10.43"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "The CoinMarketCap currency ID of the base cryptocurrency or fiat to convert from. Example: \"1\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively the currency symbol of the base cryptocurrency or fiat to convert from. Example: \"BTC\". One \"id\"or\"symbol\" is required. Please note that starting in the v2 endpoint, due to the fact that a symbol is not unique, if you request by symbol each quote response will contain an array of objects containing all of the coins that use each requested symbol. The v1 endpoint will still return a single object, the highest ranked coin using that symbol."
+    },
+    {
+      "name": "time",
+      "type": "string",
+      "desc": "Optional timestamp (Unix or ISO 8601) to reference historical pricing during conversion. If not passed, the current time will be used. If passed, we'll reference the closest historic values available for this conversion."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Pass up to 120 comma-separated fiat or cryptocurrency symbols to convert the source amount to."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/cryptocurrency/market-pairs/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "A cryptocurrency or fiat currency by CoinMarketCap ID to list market pairs for. Example: \"1\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a cryptocurrency by slug. Example: \"bitcoin\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass a cryptocurrency by symbol. Fiat currencies are not supported by this field. Example: \"BTC\". A single cryptocurrency \"id\", \"slug\",or\"symbol\" is required."
+    },
+    {
+      "name": "start",
+      "type": "integer",
+      "desc": "Optionally offset the start (1-based index) of the paginated list of items to return.",
+      "defa": "1"
+    },
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return. Use this parameter and the \"start\" parameter to determine your own pagination size.",
+      "defa": "100"
+    },
+    {
+      "name": "sort_dir",
+      "type": "string",
+      "desc": "Optionally specify the sort direction of markets returned.",
+      "defa": "\"desc\""
+    },
+    {
+      "name": "sort",
+      "type": "string",
+      "desc": "Optionally specify the sort order of markets returned. By default we return a strict sort on 24 hour reported volume. Passcmc_rankto return a CMC methodology based sort where markets with excluded volumes are returned last.",
+      "defa": "\"volume_24h_strict\""
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,category,fee_type,market_url,currency_name,currency_slug,price_quote,notice,cmc_rank,effective_liquidity,market_score,market_reputationto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,category,fee_type\""
+    },
+    {
+      "name": "matched_id",
+      "type": "string",
+      "desc": "Optionally include one or more fiat or cryptocurrency IDs to filter market pairs by. For example?id=1&matched_id=2781would only return BTC markets that matched: \"BTC/USD\" or \"USD/BTC\". This parameter cannot be used whenmatched_symbolis used."
+    },
+    {
+      "name": "matched_symbol",
+      "type": "string",
+      "desc": "Optionally include one or more fiat or cryptocurrency symbols to filter market pairs by. For example?symbol=BTC&matched_symbol=USDwould only return BTC markets that matched: \"BTC/USD\" or \"USD/BTC\". This parameter cannot be used whenmatched_idis used."
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "desc": "The category of trading this market falls under. Spot markets are the most common but options include derivatives and OTC.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "fee_type",
+      "type": "string",
+      "desc": "The fee type the exchange enforces for this market.",
+      "defa": "\"all\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    }
+  ],
+  "/v1/cryptocurrency/ohlcv/historical": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated CoinMarketCap cryptocurrency IDs. Example: \"1,1027\""
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Time period to return OHLCV data for. The default is \"daily\". If hourly, the open will be 01:00 and the close will be 01:59. If daily, the open will be 00:00:00 for the day and close will be 23:59:99 for the same day. See the main endpoint description for details.",
+      "defa": "\"daily\""
+    },
+    {
+      "name": "time_start",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to start returning OHLCV time periods for. Only the date portion of the timestamp is used for daily OHLCV so it's recommended to send an ISO date format like \"2018-09-19\" without time."
+    },
+    {
+      "name": "time_end",
+      "type": "string",
+      "desc": "Timestamp (Unix or ISO 8601) to stop returning OHLCV time periods for (inclusive). Optional, if not passed we'll default to the current time. Only the date portion of the timestamp is used for daily OHLCV so it's recommended to send an ISO date format like \"2018-09-19\" without time."
+    },
+    {
+      "name": "count",
+      "type": "number",
+      "desc": "Optionally limit the number of time periods to return results for. The default is 10 items. The current query limit is 10000 items.",
+      "defa": "10"
+    },
+    {
+      "name": "interval",
+      "type": "string",
+      "desc": "Optionally adjust the interval that \"time_period\" is sampled. For example with interval=monthly&time_period=daily you will see a daily OHLCV record for January, February, March and so on. See main endpoint description for available options.",
+      "defa": "\"daily\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "By default market quotes are returned in USD. Optionally calculate market quotes in up to 3 fiat currencies or cryptocurrencies."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if any invalid cryptocurrencies are requested or a cryptocurrency does not have matching records in the requested timeframe. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v1/cryptocurrency/price-performance-stats/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "time_period",
+      "type": "string",
+      "desc": "Specify one or more comma-delimited time periods to return stats for.all_timeis the default. Passall_time,yesterday,24h,7d,30d,90d,365dto return all supported time periods. All rolling periods have a rolling close time of the current request time. For example24hwould have a close time of now and an open time of 24 hours before now.Please note:yesterdayis a UTC period and currently does not currently supporthighandlowtimestamps.",
+      "defa": "\"all_time\""
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if no match is found for 1 or more requested cryptocurrencies. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v1/cryptocurrency/quotes/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "convert",
+      "type": "string",
+      "desc": "Optionally calculate market quotes in up to 120 currencies at once by passing a comma-separated list of cryptocurrency or fiat currency symbols. Each additional convert option beyond the first requires an additional call credit. A list of supported fiat options can be foundhere. Each conversion is returned in its own \"quote\" object."
+    },
+    {
+      "name": "convert_id",
+      "type": "string",
+      "desc": "Optionally calculate market quotes by CoinMarketCap ID instead of symbol. This option is identical toconvertoutside of ID format. Ex: convert_id=1,2781 would replace convert=BTC,USD in your query. This parameter cannot be used whenconvertis used."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passnum_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,total_supply,market_cap_by_total_supply,volume_24h_reported,volume_7d,volume_7d_reported,volume_30d,volume_30d_reported,is_active,is_fiatto include all auxiliary fields.",
+      "defa": "\"num_market_pairs,cmc_rank,date_added,tags,platform,max_supply,circulating_supply,total_supply,is_active,is_fiat\""
+    },
+    {
+      "name": "skip_invalid",
+      "type": "boolean",
+      "desc": "Passtrueto relax request validation rules. When requesting records on multiple cryptocurrencies an error is returned if no match is found for 1 or more requested cryptocurrencies. If set to true, invalid lookups will be skipped allowing valid cryptocurrencies to still be returned.",
+      "defa": "true"
+    }
+  ],
+  "/v1/partners/flipside-crypto/fcas/quotes/latest": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "One or more comma-separated cryptocurrency CoinMarketCap IDs. Example: 1,2"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass a comma-separated list of cryptocurrency slugs. Example: \"bitcoin,ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one or more comma-separated cryptocurrency symbols. Example: \"BTC,ETH\". At least one \"id\"or\"slug\"or\"symbol\" is required for this request."
+    },
+    {
+      "name": "aux",
+      "type": "string",
+      "desc": "Optionally specify a comma-separated list of supplemental data fields to return. Passpoint_change_24h,percent_change_24hto include all auxiliary fields.",
+      "defa": "\"point_change_24h,percent_change_24h\""
+    }
+  ],
+  "/v1/community/trending/token": [
+    {
+      "name": "limit",
+      "type": "integer",
+      "desc": "Optionally specify the number of results to return.",
+      "defa": "5"
+    }
+  ],
+  "/v1/content/posts/comments": [
+    {
+      "name": "post_id",
+      "type": "string",
+      "desc": "Required post ID. Example: 325670123"
+    }
+  ],
+  "/v1/content/posts/top": [
+    {
+      "name": "id",
+      "type": "string",
+      "desc": "Optional one cryptocurrency CoinMarketCap ID. Example: 1027"
+    },
+    {
+      "name": "slug",
+      "type": "string",
+      "desc": "Alternatively pass one cryptocurrency slug. Example: \"ethereum\""
+    },
+    {
+      "name": "symbol",
+      "type": "string",
+      "desc": "Alternatively pass one cryptocurrency symbols. Example: \"ETH\""
+    },
+    {
+      "name": "last_score",
+      "type": "string",
+      "desc": "Optional. The score is given in the response for finding next batch of related posts. Example: 38507.8865"
+    }
+  ]
+}
