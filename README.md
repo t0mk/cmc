@@ -20,7 +20,7 @@ wget -O cmc https://github.com/t0mk/cmc/releases/latest/download/cmc-darwin-amd6
 
 Get info about price of 1 RPL in ETH:
 ```sh
-cmc v2/tools/price-conversion.amount=1,convert=eth,symbol=rpl
+$ cmc v2/tools/price-conversion.amount=1,convert=eth,symbol=rpl
 [
   {
     "amount": 1,
@@ -40,7 +40,7 @@ cmc v2/tools/price-conversion.amount=1,convert=eth,symbol=rpl
 ```
 Do the same but in more compact call:
 ```
-cmc v2/t/p.s=rpl,convert=eth,a=1
+$ cmc v2/t/p.s=rpl,convert=eth,a=1
 ```
 
 
