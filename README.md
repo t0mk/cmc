@@ -18,6 +18,8 @@ wget -O cmc https://github.com/t0mk/cmc/releases/latest/download/cmc-darwin-amd6
 
 ## Usage
 
+Export your Coinmarketcap API key in envvar `CMC_KEY`.
+
 Get info about price of 1 RPL in ETH:
 ```sh
 $ cmc v2/tools/price-conversion.amount=1,convert=eth,symbol=rpl
